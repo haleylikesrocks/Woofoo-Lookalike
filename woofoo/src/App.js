@@ -18,10 +18,11 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const FormApp = ({
-  addField,
-  currentFields,
-}) => {
+class FormApp extends React.Component {
+
+  render() {
+
+    const { addField, currentFields } = this.props;
   return (
     <div>
       <NavBar />
@@ -30,6 +31,7 @@ const FormApp = ({
     </div>
   );
 } 
+}
 
 
 const App = connect(mapStateToProps, mapDispatchToProps)(FormApp);

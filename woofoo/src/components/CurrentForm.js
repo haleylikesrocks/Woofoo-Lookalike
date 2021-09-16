@@ -5,6 +5,8 @@ import CheckBox from './CheckBox';
 
 class CurrentForm extends React.Component {
     shouldComponentUpdate(nextProps) {
+        console.log(nextProps);
+        console.log(this.props.fields.length !== nextProps.fields.length);
         if (this.props.fields.length !== nextProps.fields.length) {
             return true;
         }        
@@ -12,6 +14,7 @@ class CurrentForm extends React.Component {
     }
 
     render() {
+        console.log(this.props);
     return (
         <div>
         {
