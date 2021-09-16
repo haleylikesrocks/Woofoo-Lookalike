@@ -5,10 +5,12 @@ export default function addFields(state = {}, action) {
     switch(action.type) {
         case actionTypes.add_single_line_type:
             const copy = { ...state };
-            copy.currentFields.push({ type: action.type, fieldSettings: {}});
+            const fieldsCopy = [...state.currentFields];
+            fieldsCopy.push({ type: action.type, fieldSettings: {}});
 
             return {
-                ...copy
+                ...copy,
+                currentFields: fieldsCopy,
             };
 
         default:
