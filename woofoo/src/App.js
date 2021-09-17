@@ -1,7 +1,6 @@
 import CurrentForm from './components/CurrentForm';
 import NavBar from './components/NavBar';
 import AddAField from './components/AddAField';
-import { add_single_line_type, add_checkbox } from './actions/action-types';
 import { connect } from "react-redux";
 import React from 'react';
 import * as actionCreator from "./actions/actionCreator";
@@ -26,11 +25,11 @@ class FormApp extends React.Component {
 
     const { addField, currentFields, removeField } = this.props;
   return (
-    <div>
+    <>
       <NavBar />
       {Object.keys(ButtonList).map((type, index) =>  <AddAField key={index} type={type} title={ButtonList[type]} addField={addField}/>)}
       <CurrentForm fields={currentFields} removeField={removeField}/> 
-    </div>
+    </>
   );
 } 
 }

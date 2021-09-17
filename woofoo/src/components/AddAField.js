@@ -3,7 +3,6 @@ import React from 'react';
 const AddAField = ({
   type,
   title,
-  icon,
   addField,
 }) => {
 

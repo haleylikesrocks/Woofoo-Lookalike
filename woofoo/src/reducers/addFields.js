@@ -27,7 +27,10 @@ export default function addFields(state = {}, action) {
                 ...copy,
                 currentFields: fieldsCopy,
             };
-
+        case actionTypes.remove_field:
+            return state;
+        case actionTypes.edit_field:
+            return state;
         default:
           return state;  
     }
