@@ -4,16 +4,16 @@ const AddAField = ({
   type,
   title,
   icon,
-  addField
+  addField,
 }) => {
 
     const handleClick = () => {
       addField(type);
-      console.log(type);
+      // console.log(type);
     }
 
     return (
-        <div>ton o buttons here
+        <div>
           <button onClick={handleClick}>{title}</button>
         </div>
     );

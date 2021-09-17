@@ -1,11 +1,21 @@
 import React from 'react';
+import { remove_field } from '../actions/action-types';
 
-const AddASingleLine = () => {
+const AddASingleLine = ({
+  removeField,
+  index,
+}) => {
+
+
+    const handleClick = () => {
+      removeField(index);
+    }
+
     return (
         <div> 
-          tonns o buttons here
           <p>Untitled</p>
           <input disabled={true} type='text'/>
+          <button onClick={handleClick}>Remove me</button>
         </div>
     );
 }

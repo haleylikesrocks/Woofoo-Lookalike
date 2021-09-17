@@ -1,10 +1,14 @@
 import { createStore } from 'redux';
 import rootReducer from "./reducers/index";
 import addFields from './reducers/addFields';
-
+import uniqid from 'uniqid';
 
 const defaultState = {
-    currentFields: [], // { type: input_type, field_settings: {} }
+    formData: {
+        formId: uniqid(),
+        currentFields: []
+    },
+    savedForms: [],
 };
 
 
