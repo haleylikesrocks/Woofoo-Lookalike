@@ -1,5 +1,5 @@
 const Styles: { [key:string]: React.CSSProperties } = {
-        first: {
+    first: {
         backgroundColor: '#18587A',
         color: '#FFFFFF',
         position: 'fixed',
@@ -11,4 +11,11 @@ const Styles: { [key:string]: React.CSSProperties } = {
         zIndex: 9999,
     },
 
+    p: {
+
+    },
+    button: {
+
+    },
+    
 };
