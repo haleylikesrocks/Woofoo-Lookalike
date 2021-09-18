@@ -1,4 +1,4 @@
-const Styles: { [key:string]: React.CSSProperties } = {
+export const Styles: { [key:string]: React.CSSProperties } = {
     first: {
         backgroundColor: '#18587A',
         color: '#FFFFFF',

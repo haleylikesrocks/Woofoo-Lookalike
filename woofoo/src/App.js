@@ -8,7 +8,7 @@ import ButtonList from './data/buttonList';
 
 function mapStateToProps(state) {
   return {
-    currentFields: state.currentFields,
+    currentFields: state.formData.currentFields,
   };
 }
 
