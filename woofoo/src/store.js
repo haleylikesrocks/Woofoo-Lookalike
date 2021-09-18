@@ -16,7 +16,6 @@ const composedEnhancers = composeWithDevTools();
 
 const store = createStore(rootReducer, defaultState, composedEnhancers);
 
-
 if (process.env.NODE_ENV !== 'production' && module.hot) {
     module.hot.accept('./reducers', () => store.replaceReducer(rootReducer));
 }

@@ -8,7 +8,6 @@ const AddAField = ({
 
     const handleClick = () => {
       addField(type);
-      // console.log(type);
     }
 
     return (
