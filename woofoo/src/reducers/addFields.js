@@ -1,6 +1,6 @@
 import * as actionTypes from "../actions/action-types";
 
-export default function addFields(state = {}, action) {
+export default function formDataReducer(state = {}, action) {
     const copy = { ...state };
     if (!state.formData) return state;
 

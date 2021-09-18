@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from "./reducers/index";
-import addFields from './reducers/addFields';
 import uniqid from 'uniqid';
 
 const defaultState = {
@@ -12,7 +12,13 @@ const defaultState = {
 };
 
 
-const store = createStore(addFields, defaultState);
+const composedEnhancers = composeWithDevTools();
 
+const store = createStore(rootReducer, defaultState, composedEnhancers);
+
+
+if (process.env.NODE_ENV !== 'production' && module.hot) {
+    module.hot.accept('./reducers', () => store.replaceReducer(rootReducer));
+}
 
 export default store;

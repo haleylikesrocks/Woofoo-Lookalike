@@ -7,6 +7,7 @@ import * as actionCreator from "./actions/actionCreator";
 import ButtonList from './data/buttonList';
 
 function mapStateToProps(state) {
+    console.log("Map state to props: " + JSON.stringify(state));
   return {
     currentFields: state.formData.currentFields,
   };
