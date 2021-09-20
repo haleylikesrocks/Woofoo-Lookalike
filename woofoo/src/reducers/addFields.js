@@ -2,9 +2,7 @@ import * as actionTypes from "../actions/action-types";
 
 function loadFormReducer(state, action) {
     const { savedForms, formId } = action;
-
     const formToLoad = savedForms.find(form => form.formId === formId);
-    console.log(formToLoad);
 
     if (!formToLoad) {
         return state;
