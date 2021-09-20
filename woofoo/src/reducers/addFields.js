@@ -1,35 +1,38 @@
-import * as actionTypes from '../actions/action-types';
+import * as actionTypes from "../actions/action-types";
 
-export default function addFields(state = {}, action) {
-    const copy = { ...state };
-    const formDataCopy = state?.formData && { ...state.formData };
-    const fieldsCopy = [...state.formData.currentFields];
+export default function formDataReducer(state = {}, action) {
+    if (!state?.currentFields) {
+        return state;
+    }       
 
-    switch(action.actionType) {
+    switch (action.actionType) {
         case actionTypes.add_field:
-            fieldsCopy.push({ type: action.type, fieldSettings: {}});
 
             return {
-                ...copy,
-                formData: {
-                    ...formDataCopy,
-                    currentFields: fieldsCopy
-                },
+                ...state,
+                currentFields: [
+                    ...state.currentFields,
+                    {
+                        type: action.type,
+                        fieldSettings: {},
+                    }
+                ],
             };
         case actionTypes.remove_field:
-            if(action.index === undefined) {
+            if (action.index === undefined) {
                 return state;
             }
-            fieldsCopy.splice(action.index, 1);
-            console.log("after:", fieldsCopy);
 
             return {
-                ...copy,
-                currentFields: fieldsCopy,
+                ...state,
+                currentFields: [
+                    ...state.currentFields.slice(0, action.index),
+                    ...state.currentFields.slice(action.index + 1)
+                ],
             };
-
+        case actionTypes.edit_field:
+            return state;
         default:
-          return state;  
+            return state;
     }
-    
 }
