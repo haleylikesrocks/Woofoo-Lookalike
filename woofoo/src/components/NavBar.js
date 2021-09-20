@@ -1,11 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import SavedForms from './SavedForms';
+import uniqid from 'uniqid';
 
-const NavBar = () => {
+const NavBar = ({
+  createForm
+}) => {
+  const createNewFormClickHandler = () => {
+    const newId = uniqid();
+    createForm(newId);
+  }
+
   return (
     <div >
         <h2>Woofoo Lookalike</h2>
-        <button>Saved Forms</button>
+        <Link to="/savedforms">
+          <button type="button">Saved forms</button>
+          </Link>
         <button>Edit Forms</button>
+        <Link to="/">
+          <button type="button" onClick={createNewFormClickHandler}>New Form</button>
+        </Link>
     </div>
   );
 }

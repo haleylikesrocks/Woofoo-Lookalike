@@ -5,23 +5,30 @@ import CheckBox from "./CheckBox";
 
 class CurrentForm extends React.Component {
     shouldComponentUpdate(nextProps) {
-        if (this.props.fields.length !== nextProps.fields.length) {
+        if (this.props.currentFields.length !== nextProps.currentFields.length) {
             return true;
         }
         return false;
     }
 
+    handleClick = () => {
+        const { saveForm, currentFields, formId, history } = this.props;
+        saveForm(currentFields, formId);
+        history.push(formId);
+    }
+
     render() {
+        const { currentFields, removeField } = this.props;
         return (
             <div>
-                {this.props.fields.map((field, index) => {
+                {currentFields.map((field, index) => {
                     switch (field.type) {
                         case add_single_line_type:
                             return (
                                 <AddASingleLine
                                     key={index}
                                     index={index}
-                                    removeField={this.props.removeField}
+                                    removeField={removeField}
                                 />
                             );
                         case add_checkbox:
@@ -29,14 +36,14 @@ class CurrentForm extends React.Component {
                                 <CheckBox
                                     key={index}
                                     index={index}
-                                    removeField={this.props.removeField}
+                                    removeField={removeField}
                                 />
                             );
                         default:
-                            console.log(field);
                             return null;
                     }
                 })}
+            <button onClick={this.handleClick}>Save Form</button>
             </div>
         );
     }
