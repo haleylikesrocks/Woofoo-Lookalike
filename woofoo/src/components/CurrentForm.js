@@ -12,7 +12,15 @@ class CurrentForm extends React.Component {
     if (this.props.currentFields.length !== nextProps.currentFields.length) {
       return true;
     }
-    return false;
+    const shouldUpdate = this.props.currentFields.find((field, index) => {
+        const settings = field.fieldSettings;
+        if (settings !== nextProps.currentFields[index].fieldSettings) {
+            return true;
+        }
+        return false;
+    });
+
+    return !!shouldUpdate;
   }
 
   handleClick = () => {

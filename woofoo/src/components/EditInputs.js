@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { updateField } from "../actions/actionCreator";
 
 const EditInputs = ({
     selectedField,

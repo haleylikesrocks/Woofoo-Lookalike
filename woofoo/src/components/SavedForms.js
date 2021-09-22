@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect}  from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 
@@ -7,11 +7,13 @@ const SavedForms = ({ savedForms, loadForm }) => {
   const history = useHistory();
 
   const handleClick = (formId, savedForms) => {
-    console.log('loading form...');
     loadForm(formId, savedForms);
     history.push(formId);
   }
+  
+    useEffect(() => {
 
+    }, [savedForms]);
   return (
     <div>
       <h1>Saved Forms</h1>

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import React, { useEffect } from "react";
 import * as actionCreator from "./actions/actionCreator";
 import ButtonList from "./data/buttonList";
-import EditInputs from "./components/EditInput";
+import EditInputs from "./components/EditInputs";
 import FieldButtons from "./components/FieldButtons";
 
 function mapStateToProps(state) {
