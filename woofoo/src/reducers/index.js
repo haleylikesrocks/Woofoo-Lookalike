@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
-import addFields from "./addFields";
+import formDataReducer from "./addFields";
+import savedFormsReducer from './saveforms';
 
-
-const rootReducer = combineReducers({addFields});
-
-export default rootReducer;
+export default combineReducers({
+    formData: formDataReducer,
+    savedForms: savedFormsReducer
+});

@@ -3,13 +3,11 @@ import React from 'react';
 const AddAField = ({
   type,
   title,
-  icon,
   addField,
 }) => {
 
     const handleClick = () => {
       addField(type);
-      // console.log(type);
     }
 
     return (
