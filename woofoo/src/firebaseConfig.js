@@ -21,7 +21,6 @@ const app = initializeApp(firebaseConfig);
 export const readSavedForms = async () => {
     const savedFormsReference = ref(getDatabase(), FORM_SAVED_STATE);
     const result = await get(child(savedFormsReference, '/savedForms'));
-    console.log(result.val());
     return result.val();
 }
 

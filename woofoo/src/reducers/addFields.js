@@ -76,7 +76,7 @@ export default function formDataReducer(state = {}, action) {
             return {
                 ...state,
                 currentFields: newCurrentFields,
-                begin_editing: {
+                editing: {
                     ...state.begin_editing,
                     currentlyEditing:false
                 }
