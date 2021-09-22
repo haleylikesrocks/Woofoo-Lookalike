@@ -2,13 +2,16 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from "./reducers/index";
 import uniqid from 'uniqid';
-import { loadState, persistState } from './persistence/util';
 import thunk from 'redux-thunk';
 
 const defaultState = {
     formData: {
         formId: uniqid(),
         currentFields: [],
+        editing: {
+            currentlyEditing: false,
+            editIndex: 0
+        }
     },
     savedForms: [],
 };

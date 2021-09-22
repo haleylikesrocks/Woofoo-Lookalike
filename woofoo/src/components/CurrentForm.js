@@ -6,24 +6,23 @@ import Number from "./Number";
 import Dropdown from "./Dropdown";
 import MultipleChoice from "./MultipleChoice";
 import Paragraph from "./Paragraph";
-import { saveFormAsync } from "../actions/actionCreator";
 
 class CurrentForm extends React.Component {
-    shouldComponentUpdate(nextProps) {
-        if (this.props.currentFields.length !== nextProps.currentFields.length) {
-            return true;
-        }
-        return false;
+  shouldComponentUpdate(nextProps) {
+    if (this.props.currentFields.length !== nextProps.currentFields.length) {
+      return true;
     }
+    return false;
+  }
 
-    handleClick = () => {
-        const { saveForm, currentFields, formId, history } = this.props;
-        saveForm(currentFields, formId);
-        history.push(formId);
-    }
+  handleClick = () => {
+    const { saveForm, currentFields, formId, history } = this.props;
+    saveForm(currentFields, formId);
+    history.push(formId);
+  };
 
     render() {
-        const { currentFields, removeField, editFields } = this.props;
+        const { currentFields, removeField, editFields, beginEditing } = this.props;
         return (
             <div>
                 {currentFields.map((field, index) => {
@@ -36,6 +35,7 @@ class CurrentForm extends React.Component {
                                     removeField={removeField}
                                     fieldSettings={field.fieldSettings}
                                     editFields={editFields}
+                                    beginEditing={beginEditing}
                                 />
                             );
                         case add_checkbox:

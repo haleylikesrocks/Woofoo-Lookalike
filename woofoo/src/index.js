@@ -8,11 +8,8 @@ import { Route, Switch } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Error from "./components/Error";
 import { loadFormAsync } from "./actions/actionCreator";
-import { readSavedForms } from "./firebaseConfig";
 
 const renderSavedForms = () => {
-    const result = readSavedForms();
-    console.log(result);
     const savedForms = store.getState().savedForms;
     return (
         <SavedForms

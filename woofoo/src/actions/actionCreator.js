@@ -1,17 +1,16 @@
 import {
-    currentFieldsRef,
     readSavedForms,
-    savedFormsRef,
 } from "../firebaseConfig";
 import { set, get, child, getDatabase, ref } from "firebase/database";
 import {
     add_field,
     remove_field,
-    edit_field,
     save_form,
     create_new_form,
     load_form,
     sync_saved_forms,
+    begin_editing,
+    update_field,
 } from "./action-types";
 import { FORM_SAVED_STATE } from "../persistence/util";
 
@@ -32,14 +31,22 @@ export function removeField(index) {
     };
 }
 
-export function editField(type, index) {
+export function updateField(index, fieldSettings) {
     return {
-        actionType: edit_field,
-        type,
-        fieldSettings: {},
-        index,
-    };
-}
+        actionType: update_field,
+        type: update_field,
+        fieldSettings,
+        index
+    }
+};
+
+export function beginEditing(index) {
+    return {
+        actionType: begin_editing,
+        type: begin_editing,
+        index
+    }
+};
 
 export function saveFormAsync(currentFields, formId, name = "Untitled") {
     return async (dispatch) => {

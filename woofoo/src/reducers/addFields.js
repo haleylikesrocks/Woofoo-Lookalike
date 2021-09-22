@@ -33,7 +33,7 @@ export default function formDataReducer(state = {}, action) {
                     {
                         type: action.type,
                         fieldSettings: {
-                            title: 'Untitled',
+                            title: 'Untitled this is mine',
                             instructions: 'Please enter text',
                             choices: ['choice 1', 'choice 2', 'choice 3']
                         },
@@ -51,9 +51,45 @@ export default function formDataReducer(state = {}, action) {
                     ...state.currentFields.slice(0, action.index),
                     ...state.currentFields.slice(action.index + 1)
                 ],
+            };    
+        case actionTypes.update_field:
+            console.log(action.index);
+            console.log("the title change is ", action.fieldSettings.title);
+            if (action.index === undefined) {
+                return state;
+            }
+            const newCurrentFields = state.currentFields.map((item, index) =>{
+                if(index !== action.index) {
+                    return item
+                }
+                return {
+                    ...item,
+                    fieldSettings: {
+                        ...item.fieldSettings,
+                        title: action.fieldSettings.title,
+                        instructions: action.fieldSettings.instructions,
+                        choices: action.fieldSettings.choices
+                    }
+                }
+            });
+
+            return {
+                ...state,
+                currentFields: newCurrentFields,
+                begin_editing: {
+                    ...state.begin_editing,
+                    currentlyEditing:false
+                }
             };
-        case actionTypes.edit_field:
-            return state;
+
+        case actionTypes.begin_editing:
+            return{
+                ...state,
+                editing: {
+                    currentlyEditing: true,
+                    editIndex: action.index
+                }
+            }
 
         case actionTypes.create_new_form:
             return {
