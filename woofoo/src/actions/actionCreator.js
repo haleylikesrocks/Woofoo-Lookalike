@@ -47,6 +47,7 @@ export function saveFormAsync(currentFields, formId, name = "Untitled") {
             getDatabase(),
             FORM_SAVED_STATE + `/savedForms/${formId}`
         );
+        console.log(currentFields);
         set(formRef, {
             currentFields,
             formId,
@@ -80,7 +81,13 @@ export function loadFormsFromDB() {
             const result = await readSavedForms();
             console.log("Loaded forms: " + result);
             // entries are returned as [key, value], so map to value
-            let mapped = Object.entries(result).map((result) => result[1]);
+            let mapped = Object.entries(result).map(result => { 
+                const savedForm = result[1];
+                if (!savedForm.currentFields) {
+                    savedForm['currentFields'] = [];
+                }
+                return savedForm;
+            });
             dispatch(syncSavedForms(mapped));
         } catch (error) {
             throw new Error(error);
