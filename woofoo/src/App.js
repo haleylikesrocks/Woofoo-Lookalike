@@ -26,7 +26,7 @@ function mapDispatchToProps(dispatch) {
             dispatch(actionCreator.saveFormAsync(currentFields, formId)),
         createForm: (formId) => dispatch(actionCreator.createForm(formId)),
         loadForm: (formId, savedForms) =>
-            dispatch(actionCreator.loadFormAsync(formId, savedForms)),
+            dispatch(actionCreator.loadForm(formId, savedForms)),
         syncForms: () => dispatch(actionCreator.loadFormsFromDB()),
     };
 }
