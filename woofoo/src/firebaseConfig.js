@@ -18,6 +18,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-export const currentFieldsRef = ref(getDatabase(), FORM_SAVED_STATE+'/currentFields');
-export const savedFormsRef = ref(getDatabase(), FORM_SAVED_STATE+'/savedForms');
+export const readSavedForms = async () => {
+    const savedFormsReference = ref(getDatabase(), FORM_SAVED_STATE);
+    const result = await get(child(savedFormsReference, '/savedForms'));
+    console.log(result.val());
+    return result.val();
+}
+
 export default firebaseConfig;

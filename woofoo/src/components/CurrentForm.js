@@ -6,6 +6,7 @@ import Number from "./Number";
 import Dropdown from "./Dropdown";
 import MultipleChoice from "./MultipleChoice";
 import Paragraph from "./Paragraph";
+import { saveFormAsync } from "../actions/actionCreator";
 
 class CurrentForm extends React.Component {
     shouldComponentUpdate(nextProps) {

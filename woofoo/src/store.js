@@ -1,8 +1,9 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from "./reducers/index";
 import uniqid from 'uniqid';
 import { loadState, persistState } from './persistence/util';
+import thunk from 'redux-thunk';
 
 const defaultState = {
     formData: {
@@ -12,7 +13,7 @@ const defaultState = {
     savedForms: [],
 };
 
-const composedEnhancers = composeWithDevTools();
+const composedEnhancers = composeWithDevTools(applyMiddleware(thunk));
 
 const loadedState = null;//  loadState();
 const state = ((loadedState && loadedState.formData && loadedState.savedForms) ? loadedState : defaultState);
