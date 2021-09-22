@@ -1,10 +1,12 @@
 import CurrentForm from "./components/CurrentForm";
 import NavBar from "./components/NavBar";
-import AddAField from "./components/AddAField";
 import { connect } from "react-redux";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as actionCreator from "./actions/actionCreator";
 import ButtonList from "./data/buttonList";
+import EditInputs from "./components/EditInput";
+import FieldButtons from "./components/FieldButtons";
+// import { FirebaseContext } from "./firebaseApp";
 
 function mapStateToProps(state) {
   return {
@@ -21,43 +23,47 @@ function mapDispatchToProps(dispatch) {
     saveForm: (currentFields, name) =>
       dispatch(actionCreator.saveForm(currentFields, name)),
     createForm: (formId) => dispatch(actionCreator.createForm(formId)),
-    loadForm: (formId, savedForms) => dispatch(actionCreator.loadForm(formId, savedForms)),
+    loadForm: (formId, savedForms) =>
+      dispatch(actionCreator.loadForm(formId, savedForms)),
   };
 }
 
-class FormApp extends React.Component {
-  render() {
-    const {
-      addField,
-      currentFields,
-      formId,
-      removeField,
-      saveForm,
-      createForm,
-      savedForms,
-    } = this.props;
-    return (
-      <>
-        <NavBar createForm={createForm} savedForms={savedForms} />
-        {Object.keys(ButtonList).map((type, index) => (
-          <AddAField
-            key={index}
-            type={type}
-            title={ButtonList[type]}
-            addField={addField}
-          />
-        ))}
-        <CurrentForm
-          currentFields={currentFields}
-          formId={formId}
-          removeField={removeField}
-          saveForm={saveForm}
-          history={this.props.history}
-        />
-      </>
-    );
-  }
-}
+const FormApp = ({
+  addField,
+  currentFields,
+  formId,
+  removeField,
+  saveForm,
+  createForm,
+  savedForms,
+  history,
+}) => {
+  const [editing, setEditing] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const editHere = (index) => {
+    setCurrentIndex(index);
+    setEditing(true);
+  };
+
+  return (
+    <>
+      <NavBar createForm={createForm} savedForms={savedForms} />
+      <FieldButtons buttonList={ButtonList} addField={addField} />
+      {editing && (
+        <EditInputs selectedField={currentFields[currentIndex]} />
+      )}
+      <CurrentForm
+        currentFields={currentFields}
+        formId={formId}
+        removeField={removeField}
+        saveForm={saveForm}
+        history={history}
+        editFields={editHere}
+      />
+    </>
+  );
+};
 
 const App = connect(mapStateToProps, mapDispatchToProps)(FormApp);
 

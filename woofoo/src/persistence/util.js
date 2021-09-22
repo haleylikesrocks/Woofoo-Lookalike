@@ -1,5 +1,5 @@
 
-const FORM_SAVED_STATE = 'FORM_STATE';
+export const FORM_SAVED_STATE = 'FORM_STATE';
 
 export const loadState = () => {
     try {

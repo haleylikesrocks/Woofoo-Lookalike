@@ -11,7 +11,6 @@ import { loadForm } from "./actions/actionCreator";
 
 const renderSavedForms = () => {
   const savedForms = store.getState().savedForms;
-  console.log(store.getState());
   return (
     <SavedForms
       savedForms={savedForms}
@@ -22,18 +21,16 @@ const renderSavedForms = () => {
   );
 };
 
-const renderLoadedForm = () => {};
-
 const FormApp = (
   <Provider store={store}>
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={App} />
-        <Route exact path="/savedforms" component={renderSavedForms} />
-        <Route path="/:formId" component={App} />
-        <Route component={Error} />
-      </Switch>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route exact path="/savedforms" component={renderSavedForms} />
+          <Route path="/:formId" component={App} />
+          <Route path="*" component={Error} />
+        </Switch>
+      </BrowserRouter>
   </Provider>
 );
 

@@ -1,21 +1,19 @@
 import React from 'react';
 
-const Dropdown = ({
+const Paragraph = ({
   removeField,
   index,
   }) => {
     const handleClick = () => {
       removeField(index);
     }
-
     return (
         <div> 
-          <p>Select A Choice</p>
-          <select disabled={true}>
-          </select>
+          <p>Enter Text</p>
+          <textarea  cols="30" rows="10" disabled={true}></textarea> 
           <button onClick={handleClick}>Remove me</button>
         </div>
     );
 }
 
-export default Dropdown;
+export default Paragraph;

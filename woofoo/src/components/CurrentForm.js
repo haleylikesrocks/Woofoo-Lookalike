@@ -1,7 +1,11 @@
 import React from "react";
-import { add_single_line_type, add_checkbox } from "../actions/action-types";
+import { add_single_line_type, add_checkbox, add_dropdown, add_number, add_multiple_coice, add_paragraph } from "../actions/action-types";
 import AddASingleLine from "./AddASingleLine";
 import CheckBox from "./CheckBox";
+import Number from "./Number";
+import Dropdown from "./Dropdown";
+import MultipleChoice from "./MultipleChoice";
+import Paragraph from "./Paragraph";
 
 class CurrentForm extends React.Component {
     shouldComponentUpdate(nextProps) {
@@ -18,7 +22,7 @@ class CurrentForm extends React.Component {
     }
 
     render() {
-        const { currentFields, removeField } = this.props;
+        const { currentFields, removeField, editFields } = this.props;
         return (
             <div>
                 {currentFields.map((field, index) => {
@@ -29,6 +33,8 @@ class CurrentForm extends React.Component {
                                     key={index}
                                     index={index}
                                     removeField={removeField}
+                                    fieldSettings={field.fieldSettings}
+                                    editFields={editFields}
                                 />
                             );
                         case add_checkbox:
@@ -37,8 +43,41 @@ class CurrentForm extends React.Component {
                                     key={index}
                                     index={index}
                                     removeField={removeField}
+                                    fieldSettings={field.fieldSettings}
                                 />
                             );
+                        case add_number:
+                            return(
+                                <Number 
+                                    key={index}
+                                    index={index}
+                                    removeField={removeField}
+                                />
+                            );
+                        case add_dropdown:
+                            return (
+                                <Dropdown 
+                                    key={index}
+                                    index={index}
+                                    removeField={removeField}
+                                />
+                            );
+                        case add_multiple_coice:
+                            return (
+                                <MultipleChoice
+                                    key={index}
+                                    index={index}
+                                    removeField={removeField}
+                                />
+                            );
+                            case add_paragraph:
+                                return (
+                                    <Paragraph 
+                                        key={index}
+                                        index={index}
+                                        removeField={removeField}
+                                    />
+                                );
                         default:
                             return null;
                     }

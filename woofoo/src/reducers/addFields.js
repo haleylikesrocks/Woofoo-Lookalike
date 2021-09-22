@@ -32,7 +32,11 @@ export default function formDataReducer(state = {}, action) {
                     ...state.currentFields,
                     {
                         type: action.type,
-                        fieldSettings: {},
+                        fieldSettings: {
+                            title: 'Untitled',
+                            instructions: 'Please enter text',
+                            choices: ['choice 1', 'choice 2', 'choice 3']
+                        },
                     }
                 ],
             };
