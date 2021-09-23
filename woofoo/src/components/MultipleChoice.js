@@ -16,11 +16,12 @@ const MultipleChoice = ({
     }
 
     const listChoices = () => {
-      fieldSettings.choices.map((choice, index) =>{
+      return fieldSettings.choices && fieldSettings.choices.map((choice, index) =>{
+          console.log(choice, index);
         return (
-          <div>
+          <div key={index}>
             <input disabled={true} type='radio' id={`choice${index}`}/>
-            <label htmlFor={`choice${index}`}>{choice}</label> <br/>
+            <label htmlFor={`choice${index}`}>{choice}</label> 
           </div>
         )
       });
@@ -28,9 +29,9 @@ const MultipleChoice = ({
 
     return (
       <div onClick={editHere}> 
-        <h3 className="stand" id="foli">{fieldSettings.title}</h3>
-        <p>{fieldSettings.instructions}</p>
-        {listChoices}
+        <h3 className="stand" id="foli">{fieldSettings && fieldSettings.title}</h3>
+        <p>{fieldSettings && fieldSettings.instructions}</p>
+        {fieldSettings && listChoices()}
         {/* <input disabled={true} type='radio' id='choice2'/>
         <label htmlFor='choice2'> Choice 2</label> <br/>
         <input disabled={true} type='radio' id='choice3'/>
