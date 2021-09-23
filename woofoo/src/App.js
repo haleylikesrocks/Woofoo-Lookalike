@@ -76,7 +76,7 @@ const FormApp = ({
                             {editing.currentlyEditing && (
                                 <EditInputs
                                     selectedField={
-                                        currentFields[editing.editIndex]
+                                        currentFields && currentFields[editing.editIndex]
                                     }
                                     index={editing.editIndex}
                                     updateField={updateField}

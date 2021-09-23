@@ -96,6 +96,10 @@ export default function formDataReducer(state = {}, action) {
                 ...state,
                 currentFields: [],
                 formId: action.formId,
+                editing: {
+                    currentlyEditing: false,
+                    editIndex: undefined,
+                }
             }
         case actionTypes.load_form:
             return loadFormReducer(state, action);
