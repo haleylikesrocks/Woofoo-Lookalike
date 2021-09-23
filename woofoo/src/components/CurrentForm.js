@@ -53,6 +53,8 @@ class CurrentForm extends React.Component {
                                     index={index}
                                     removeField={removeField}
                                     fieldSettings={field.fieldSettings}
+                                    editFields={editFields}
+                                    beginEditing={beginEditing}
                                 />
                             );
                         case add_number:
@@ -61,6 +63,9 @@ class CurrentForm extends React.Component {
                                     key={index}
                                     index={index}
                                     removeField={removeField}
+                                    fieldSettings={field.fieldSettings}
+                                    editFields={editFields}
+                                    beginEditing={beginEditing}
                                 />
                             );
                         case add_dropdown:
@@ -69,6 +74,9 @@ class CurrentForm extends React.Component {
                                     key={index}
                                     index={index}
                                     removeField={removeField}
+                                    fieldSettings={field.fieldSettings}
+                                    editFields={editFields}
+                                    beginEditing={beginEditing}
                                 />
                             );
                         case add_multiple_coice:
@@ -77,6 +85,9 @@ class CurrentForm extends React.Component {
                                     key={index}
                                     index={index}
                                     removeField={removeField}
+                                    fieldSettings={field.fieldSettings}
+                                    editFields={editFields}
+                                    beginEditing={beginEditing}
                                 />
                             );
                             case add_paragraph:
@@ -85,13 +96,16 @@ class CurrentForm extends React.Component {
                                         key={index}
                                         index={index}
                                         removeField={removeField}
+                                        fieldSettings={field.fieldSettings}
+                                        editFields={editFields}
+                                        beginEditing={beginEditing}
                                     />
                                 );
                         default:
                             return null;
                     }
                 })}
-            <button onClick={this.handleClick}>Save Form</button>
+            <button id="footer" onClick={this.handleClick}>Save Form</button>
             </div>
         );
     }
