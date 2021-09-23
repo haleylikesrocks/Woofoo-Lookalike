@@ -13,6 +13,7 @@ function mapStateToProps(state) {
         formId: state.formData.formId,
         editing: state.formData.editing,
         savedForms: state.savedForms,
+        isSignedIn: state.authDetails.isSignedIn,
     };
 }
 
@@ -20,7 +21,8 @@ function mapDispatchToProps(dispatch) {
     return {
         addField: (type) => dispatch(actionCreator.addField(type)),
         removeField: (index) => dispatch(actionCreator.removeField(index)),
-        updateField: (index, fieldSetting) => dispatch(actionCreator.updateField(index, fieldSetting)),
+        updateField: (index, fieldSetting) =>
+            dispatch(actionCreator.updateField(index, fieldSetting)),
         beginEditing: (index) => dispatch(actionCreator.beginEditing(index)),
         saveForm: (currentFields, formId) =>
             dispatch(actionCreator.saveFormAsync(currentFields, formId)),
@@ -28,6 +30,8 @@ function mapDispatchToProps(dispatch) {
         loadForm: (formId, savedForms) =>
             dispatch(actionCreator.loadForm(formId, savedForms)),
         syncForms: () => dispatch(actionCreator.loadFormsFromDB()),
+        signInWithEmail: (email, password) =>
+            dispatch(actionCreator.signInAsync(email, password)),
     };
 }
 
@@ -44,25 +48,45 @@ const FormApp = ({
     history,
     syncForms,
     editing,
+    signInWithEmail,
+    isSignedIn,
 }) => {
     // synchronize forms with db and redux state
     useEffect(() => {
-       syncForms(); 
+        syncForms();
     }, [syncForms, savedForms.length]);
+
+    const handleSignIn = () => {
+        signInWithEmail("testuser@unreal.com", "password");
+    };
 
     return (
         <>
-            <NavBar createForm={createForm} savedForms={savedForms} />
-            <FieldButtons buttonList={ButtonList} addField={addField} />
-            {editing.currentlyEditing && <EditInputs selectedField={currentFields[editing.editIndex]} index={editing.editIndex} updateField={updateField}/>}
-            <CurrentForm
-                currentFields={currentFields}
-                formId={formId}
-                removeField={removeField}
-                saveForm={saveForm}
-                beginEditing={beginEditing}
-                history={history}
-            />
+            {isSignedIn ? (
+                <>
+                    <NavBar createForm={createForm} savedForms={savedForms} />
+                    <FieldButtons buttonList={ButtonList} addField={addField} />
+                    {editing.currentlyEditing && (
+                        <EditInputs
+                            selectedField={currentFields[editing.editIndex]}
+                            index={editing.editIndex}
+                            updateField={updateField}
+                        />
+                    )}
+                    <CurrentForm
+                        currentFields={currentFields}
+                        formId={formId}
+                        removeField={removeField}
+                        saveForm={saveForm}
+                        beginEditing={beginEditing}
+                        history={history}
+                    />
+                </>
+            ) : (
+                <div>
+                    <button onClick={handleSignIn}>Sign in!</button>
+                </div>
+            )}
         </>
     );
 };

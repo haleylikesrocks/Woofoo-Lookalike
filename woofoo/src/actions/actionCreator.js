@@ -1,6 +1,4 @@
-import {
-    readSavedForms,
-} from "../firebaseConfig";
+import { readSavedForms } from "../firebaseConfig";
 import { set, getDatabase, ref } from "firebase/database";
 import {
     add_field,
@@ -11,8 +9,10 @@ import {
     sync_saved_forms,
     begin_editing,
     update_field,
+    sign_in,
 } from "./action-types";
 import { FORM_SAVED_STATE } from "../persistence/util";
+import { emailSignIn } from "../auth";
 
 export function addField(type) {
     return {
@@ -36,17 +36,17 @@ export function updateField(index, fieldSettings) {
         actionType: update_field,
         type: update_field,
         fieldSettings,
-        index
-    }
-};
+        index,
+    };
+}
 
 export function beginEditing(index) {
     return {
         actionType: begin_editing,
         type: begin_editing,
-        index
-    }
-};
+        index,
+    };
+}
 
 export function saveFormAsync(currentFields, formId, name = "Untitled") {
     return async (dispatch) => {
@@ -85,10 +85,10 @@ export function loadFormsFromDB() {
         try {
             const result = await readSavedForms();
             // entries are returned as [key, value], so map to value
-            let mapped = Object.entries(result).map(result => { 
+            let mapped = Object.entries(result).map((result) => {
                 const savedForm = result[1];
                 if (!savedForm.currentFields) {
-                    savedForm['currentFields'] = [];
+                    savedForm["currentFields"] = [];
                 }
                 return savedForm;
             });
@@ -106,12 +106,28 @@ export function syncSavedForms(savedForms) {
     };
 }
 
-
 export function loadForm(formId, savedForms) {
     return {
         actionType: load_form,
         type: load_form,
         formId,
         savedForms,
+    };
+}
+
+export function signInAsync(email, password) {
+    return async (dispatch) => {
+        const success = await emailSignIn(email, password);
+        if (!success) { 
+            console.error("Error signing in in action");
+        }
+        console.log(success);
+        const { providerId } = success;
+        dispatch({
+            type: sign_in,
+            username: email,
+            isSignedIn: true,
+            provider: providerId,
+        });
     };
 }

@@ -15,6 +15,11 @@ const defaultState = {
         }
     },
     savedForms: [],
+    authDetails: {
+        isSignedIn: false,
+        username: "",
+        provider: '',
+    }
 };
 
 const composedEnhancers = composeWithDevTools(applyMiddleware(thunk));
