@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SavedForms from './SavedForms';
 import uniqid from 'uniqid';
 
 const NavBar = ({
