@@ -15,7 +15,9 @@ const Paragraph = ({
       removeField(index);
     }
     return (
+
         <li onClick={editHere} id="formPreview"> 
+
           <h3 className="stand">{fieldSettings.title}</h3>
           <p>{fieldSettings.instructions}</p>
           <textarea  cols="30" rows="10" disabled={true}></textarea> <br/>

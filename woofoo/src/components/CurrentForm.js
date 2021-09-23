@@ -36,6 +36,7 @@ class CurrentForm extends React.Component {
     history.push(formId);
   };
 
+
   render() {
     const { currentFields, removeField, editFields, beginEditing } = this.props;
     return (
@@ -124,6 +125,7 @@ class CurrentForm extends React.Component {
       </div>
     );
   }
+
 }
 
 export default CurrentForm;

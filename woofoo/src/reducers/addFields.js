@@ -93,6 +93,7 @@ export default function formDataReducer(state = {}, action) {
 
         case actionTypes.create_new_form:
             return {
+                ...state,
                 currentFields: [],
                 formId: action.formId,
             }

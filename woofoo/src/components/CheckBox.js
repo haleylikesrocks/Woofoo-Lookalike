@@ -8,6 +8,7 @@ const CheckBox = ({
   }) => {
     const editHere = () =>{
       beginEditing(index);
+
     }
 
     const handleClick = (e) => {
@@ -32,6 +33,7 @@ const CheckBox = ({
           <h3 className="stand">{fieldSettings && fieldSettings.title}</h3>
           <p>{fieldSettings && fieldSettings.instructions}</p>
           {fieldSettings && listChoices()}
+
           <button onClick={handleClick}>Remove me</button>
         </li>
     );

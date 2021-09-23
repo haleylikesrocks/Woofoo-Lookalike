@@ -5,6 +5,7 @@ const MultipleChoice = ({
   index,
   fieldSettings,
   beginEditing,
+
 }) => {
   const editHere = () => {
     beginEditing(index);
@@ -38,5 +39,6 @@ const MultipleChoice = ({
     </li>
   );
 };
+
 
 export default MultipleChoice;

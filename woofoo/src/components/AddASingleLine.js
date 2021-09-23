@@ -17,7 +17,9 @@ const AddASingleLine = ({
     }
 
     return (
+
         <li onClick={editHere} id="formPreview" style={{ zIndex: 500}}> 
+
           <h3 className="stand">{fieldSettings.title}</h3>
           <p>{fieldSettings.instructions}</p>
           <input disabled={true} type='text'/>

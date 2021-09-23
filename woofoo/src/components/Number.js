@@ -15,7 +15,9 @@ const Number = ({
       removeField(index);
     }
     return (
+
         <li onClick={editHere} id="formPreview"> 
+
           <h3 className="stand">{fieldSettings.title}</h3>
           <p>{fieldSettings.instructions}</p>
           <input type='number' disabled={true}></input>

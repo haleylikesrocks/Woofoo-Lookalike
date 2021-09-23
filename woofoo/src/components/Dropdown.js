@@ -27,9 +27,11 @@ const Dropdown = ({
     
 
     return (
+
         <li onClick={editHere} id="formPreview" style={{ zIndex: 500}}> 
           <h3 className="stand">{fieldSettings && fieldSettings.title}</h3>
           <p>{fieldSettings && fieldSettings.instructions}</p>
+
           <select disabled={true}>
             {fieldSettings && listChoices()}
           </select>
