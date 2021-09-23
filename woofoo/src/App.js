@@ -48,7 +48,7 @@ const FormApp = ({
     // synchronize forms with db and redux state
     useEffect(() => {
        syncForms(); 
-    }, [savedForms.length]);
+    }, [syncForms, savedForms.length]);
 
     return (
         <>

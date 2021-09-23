@@ -1,7 +1,7 @@
 import {
     readSavedForms,
 } from "../firebaseConfig";
-import { set, get, child, getDatabase, ref } from "firebase/database";
+import { set, getDatabase, ref } from "firebase/database";
 import {
     add_field,
     remove_field,
@@ -59,7 +59,6 @@ export function saveFormAsync(currentFields, formId, name = "Untitled") {
             formId,
             name,
         });
-        console.log("set the db");
         dispatch(saveForm(currentFields, formId, name));
     };
 }
@@ -107,13 +106,13 @@ export function syncSavedForms(savedForms) {
     };
 }
 
-export function loadFormAsync(formId, savedForms) {
-    return (dispatch) => {
-        const formRef =
-            (getDatabase(), FORM_SAVED_STATE + `/savedForms/${formId}`);
-        dispatch(loadForm(formId, savedForms));
-    };
-}
+//export function loadFormAsync(formId, savedForms) {
+//    return (dispatch) => {
+//        const formRef =
+//            (getDatabase(), FORM_SAVED_STATE + `/savedForms/${formId}`);
+//        dispatch(loadForm(formId, savedForms));
+//    };
+//}
 
 export function loadForm(formId, savedForms) {
     return {

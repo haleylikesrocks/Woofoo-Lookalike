@@ -7,7 +7,7 @@ import store from "./store";
 import { Route, Switch } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Error from "./components/Error";
-import { loadFormAsync } from "./actions/actionCreator";
+import { loadForm } from "./actions/actionCreator";
 
 const renderSavedForms = () => {
     const savedForms = store.getState().savedForms;
@@ -15,7 +15,7 @@ const renderSavedForms = () => {
         <SavedForms
             savedForms={savedForms}
             loadForm={(formId, savedForms) =>
-                store.dispatch(loadFormAsync(formId, savedForms))
+                store.dispatch(loadForm(formId, savedForms))
             }
         />
     );

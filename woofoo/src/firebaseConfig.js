@@ -1,6 +1,6 @@
 // Import the fuctions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, get, child } from 'firebase/database'
+import { getDatabase, ref, get, child } from 'firebase/database'
 import { FORM_SAVED_STATE } from "./persistence/util";
 
 // Your web app's Firebase configuration
@@ -16,7 +16,7 @@ const firebaseConfig = {
   databaseURL: "https://woofoo-practice-app-default-rtdb.firebaseio.com",
 };
 
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
 export const readSavedForms = async () => {
     const savedFormsReference = ref(getDatabase(), FORM_SAVED_STATE);
