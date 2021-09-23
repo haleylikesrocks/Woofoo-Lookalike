@@ -8,6 +8,7 @@ import EditInputs from "./components/EditInputs";
 import FieldButtons from "./components/FieldButtons";
 
 function mapStateToProps(state) {
+
     return {
         currentFields: state.formData.currentFields,
         formId: state.formData.formId,
@@ -100,6 +101,7 @@ const FormApp = ({
             )}
         </>
     );
+
 };
 
 const App = connect(mapStateToProps, mapDispatchToProps)(FormApp);

@@ -1,5 +1,12 @@
 import React from "react";
-import { add_single_line_type, add_checkbox, add_dropdown, add_number, add_multiple_coice, add_paragraph } from "../actions/action-types";
+import {
+  add_single_line_type,
+  add_checkbox,
+  add_dropdown,
+  add_number,
+  add_multiple_coice,
+  add_paragraph,
+} from "../actions/action-types";
 import AddASingleLine from "./AddASingleLine";
 import CheckBox from "./CheckBox";
 import Number from "./Number";
@@ -13,11 +20,11 @@ class CurrentForm extends React.Component {
       return true;
     }
     const shouldUpdate = this.props.currentFields.find((field, index) => {
-        const settings = field.fieldSettings;
-        if (settings !== nextProps.currentFields[index].fieldSettings) {
-            return true;
-        }
-        return false;
+      const settings = field.fieldSettings;
+      if (settings !== nextProps.currentFields[index].fieldSettings) {
+        return true;
+      }
+      return false;
     });
 
     return !!shouldUpdate;
@@ -29,86 +36,96 @@ class CurrentForm extends React.Component {
     history.push(formId);
   };
 
-    render() {
-        const { currentFields, removeField, editFields, beginEditing } = this.props;
-        return (
-            <div>
-                {currentFields.map((field, index) => {
-                    switch (field.type) {
-                        case add_single_line_type:
-                            return (
-                                <AddASingleLine
-                                    key={index}
-                                    index={index}
-                                    removeField={removeField}
-                                    fieldSettings={field.fieldSettings}
-                                    editFields={editFields}
-                                    beginEditing={beginEditing}
-                                />
-                            );
-                        case add_checkbox:
-                            return (
-                                <CheckBox
-                                    key={index}
-                                    index={index}
-                                    removeField={removeField}
-                                    fieldSettings={field.fieldSettings}
-                                    editFields={editFields}
-                                    beginEditing={beginEditing}
-                                />
-                            );
-                        case add_number:
-                            return(
-                                <Number 
-                                    key={index}
-                                    index={index}
-                                    removeField={removeField}
-                                    fieldSettings={field.fieldSettings}
-                                    editFields={editFields}
-                                    beginEditing={beginEditing}
-                                />
-                            );
-                        case add_dropdown:
-                            return (
-                                <Dropdown 
-                                    key={index}
-                                    index={index}
-                                    removeField={removeField}
-                                    fieldSettings={field.fieldSettings}
-                                    editFields={editFields}
-                                    beginEditing={beginEditing}
-                                />
-                            );
-                        case add_multiple_coice:
-                            return (
-                                <MultipleChoice
-                                    key={index}
-                                    index={index}
-                                    removeField={removeField}
-                                    fieldSettings={field.fieldSettings}
-                                    editFields={editFields}
-                                    beginEditing={beginEditing}
-                                />
-                            );
-                            case add_paragraph:
-                                return (
-                                    <Paragraph 
-                                        key={index}
-                                        index={index}
-                                        removeField={removeField}
-                                        fieldSettings={field.fieldSettings}
-                                        editFields={editFields}
-                                        beginEditing={beginEditing}
-                                    />
-                                );
-                        default:
-                            return null;
-                    }
-                })}
-            <button id="footer" onClick={this.handleClick}>Save Form</button>
-            </div>
-        );
-    }
+
+  render() {
+    const { currentFields, removeField, editFields, beginEditing } = this.props;
+    return (
+      <div id="main">
+        <div id="formPreview">
+          <ul id="formField">
+            {currentFields.map((field, index) => {
+              switch (field.type) {
+                case add_single_line_type:
+                  return (
+                    <AddASingleLine
+                      key={index}
+                      index={index}
+                      removeField={removeField}
+                      fieldSettings={field.fieldSettings}
+                      editFields={editFields}
+                      beginEditing={beginEditing}
+                    />
+                  );
+                case add_checkbox:
+                  return (
+                    <CheckBox
+                      key={index}
+                      index={index}
+                      removeField={removeField}
+                      fieldSettings={field.fieldSettings}
+                      editFields={editFields}
+                      beginEditing={beginEditing}
+                    />
+                  );
+                case add_number:
+                  return (
+                    <Number
+                      key={index}
+                      index={index}
+                      removeField={removeField}
+                      fieldSettings={field.fieldSettings}
+                      editFields={editFields}
+                      beginEditing={beginEditing}
+                    />
+                  );
+                case add_dropdown:
+                  return (
+                    <Dropdown
+                      key={index}
+                      index={index}
+                      removeField={removeField}
+                      fieldSettings={field.fieldSettings}
+                      editFields={editFields}
+                      beginEditing={beginEditing}
+                    />
+                  );
+                case add_multiple_coice:
+                  return (
+                    <MultipleChoice
+                      key={index}
+                      index={index}
+                      removeField={removeField}
+                      fieldSettings={field.fieldSettings}
+                      editFields={editFields}
+                      beginEditing={beginEditing}
+                    />
+                  );
+                case add_paragraph:
+                  return (
+                    <Paragraph
+                      key={index}
+                      index={index}
+                      removeField={removeField}
+                      fieldSettings={field.fieldSettings}
+                      editFields={editFields}
+                      beginEditing={beginEditing}
+                    />
+                  );
+                default:
+                  return null;
+              }
+            })}
+          </ul>
+        </div>
+        <div id="formButtons">
+          <button id="saveForm" onClick={this.handleClick}>
+            Save Form
+          </button>
+        </div>
+      </div>
+    );
+  }
+
 }
 
 export default CurrentForm;

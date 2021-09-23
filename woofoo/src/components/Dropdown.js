@@ -15,14 +15,28 @@ const Dropdown = ({
       removeField(index);
     }
 
+    const listChoices = () => {
+      return(
+      fieldSettings.choices.map((choice, index) =>{
+        return (
+          <option key={index} value={`choice${index}`} disabled={true} id={`choice${index}`}>{choice}</option>
+        )
+      }))
+    };
+
+    
+
     return (
-        <div className="desc notranslate" onClick={editHere}> 
-          <h3 className="stand">{fieldSettings.title}</h3>
-          <p>{fieldSettings.instructions}</p>
+
+        <li onClick={editHere} id="formPreview" style={{ zIndex: 500}}> 
+          <h3 className="stand">{fieldSettings && fieldSettings.title}</h3>
+          <p>{fieldSettings && fieldSettings.instructions}</p>
+
           <select disabled={true}>
+            {fieldSettings && listChoices()}
           </select>
           <button onClick={handleClick}>Remove me</button>
-        </div>
+        </li>
     );
 }
 

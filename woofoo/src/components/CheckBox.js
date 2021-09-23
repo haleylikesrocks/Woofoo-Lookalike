@@ -8,24 +8,34 @@ const CheckBox = ({
   }) => {
     const editHere = () =>{
       beginEditing(index);
+
     }
 
     const handleClick = (e) => {
       e.stopPropagation();
       removeField(index);
     }
+
+    const listChoices = () => {
+      return(
+      fieldSettings.choices.map((choice, index) =>{
+        return (
+          <div key={index}> 
+            <input disabled={true} type='checkbox' id={`choice${index}`}/>
+            <label htmlFor={`choice${index}`}>{choice}</label> <br/>
+          </div>
+        )
+      }))
+    };
+
     return (
-        <div onClick={editHere}> 
-          <h3 className="stand">{fieldSettings.title}</h3>
-          <p>{fieldSettings.instructions}</p>
-          <input disabled={true} type='checkbox' id='choice1'/>
-          <label htmlFor='choice1'> {fieldSettings.choices[0]}</label> <br/>
-          <input disabled={true} type='checkbox' id='choice2'/>
-          <label htmlFor='choice2'> Choice 2</label> <br/>
-          <input disabled={true} type='checkbox' id='choice3'/>
-          <label htmlFor='choice3'> Choice 3</label> <br/>
+        <li onClick={editHere} id="formPreview" style={{ zIndex: 500}}> 
+          <h3 className="stand">{fieldSettings && fieldSettings.title}</h3>
+          <p>{fieldSettings && fieldSettings.instructions}</p>
+          {fieldSettings && listChoices()}
+
           <button onClick={handleClick}>Remove me</button>
-        </div>
+        </li>
     );
 }
 
