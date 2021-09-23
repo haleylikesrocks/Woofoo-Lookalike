@@ -84,6 +84,9 @@ export function loadFormsFromDB() {
     return async (dispatch) => {
         try {
             const result = await readSavedForms();
+            if (!result) {
+                return dispatch(syncSavedForms([]));
+            }
             // entries are returned as [key, value], so map to value
             let mapped = Object.entries(result).map((result) => {
                 const savedForm = result[1];
