@@ -1,4 +1,5 @@
 import React from 'react';
+import { Styles } from '../style.ts';
 
 const AddAField = ({
   type,
@@ -11,9 +12,7 @@ const AddAField = ({
     }
 
     return (
-
-        <div className="button" id="addFields" >
-
+        <div className="button" id="addFields" style={Styles.fieldButton}>
           <button onClick={handleClick}>{title}</button>
         </div>
     );

@@ -13,6 +13,7 @@ import Number from "./Number";
 import Dropdown from "./Dropdown";
 import MultipleChoice from "./MultipleChoice";
 import Paragraph from "./Paragraph";
+import { Styles } from '../style.ts';
 
 class CurrentForm extends React.Component {
   shouldComponentUpdate(nextProps) {
@@ -40,8 +41,8 @@ class CurrentForm extends React.Component {
   render() {
     const { currentFields, removeField, editFields, beginEditing } = this.props;
     return (
-      <div id="main">
-        <div id="formPreview">
+      <div id="main" style={Styles.currentFormEditing}>
+        <div id="formPreview" style={Styles.currentFormPreview}>
           <ul id="formField">
             {currentFields.map((field, index) => {
               switch (field.type) {
@@ -117,7 +118,7 @@ class CurrentForm extends React.Component {
             })}
           </ul>
         </div>
-        <div id="formButtons">
+        <div id="formButtons" style={Styles.formButtons}>
           <button id="saveForm" onClick={this.handleClick}>
             Save Form
           </button>

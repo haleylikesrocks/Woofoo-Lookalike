@@ -67,8 +67,8 @@ const FormApp = ({
             {isSignedIn ? (
                 <div id="app" style={Styles.app}>
                     <NavBar createForm={createForm} savedForms={savedForms} />
-                    <div id="stage">
-                        <div id="side">
+                    <div id="stage" style={Styles.stage}>
+                        <div id="side" style={Styles.side}>
                             <FieldButtons
                                 buttonList={ButtonList}
                                 addField={addField}
@@ -94,7 +94,7 @@ const FormApp = ({
                     </div>
                 </div>
             ) : (
-                <div>
+                <div style={Styles.signIn}>
                     <button onClick={handleSignIn}>Sign in!</button>
                 </div>
             )}

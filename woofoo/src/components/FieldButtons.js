@@ -3,7 +3,7 @@ import AddAField from "./AddAField";
 
 const FieldButtons = ({ buttonList, addField }) => {
   return (
-    <div>
+    <>
       {Object.keys(buttonList).map((type, index) => (
         <AddAField
           key={index}
@@ -12,7 +12,7 @@ const FieldButtons = ({ buttonList, addField }) => {
           addField={addField}
         />
       ))}
-    </div>
+    </>
   );
 };
 
