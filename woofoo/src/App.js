@@ -65,7 +65,6 @@ const FormApp = ({
             />
           )}
         </div>
-        <div id="formPreview">
         <CurrentForm
           currentFields={currentFields}
           formId={formId}
@@ -73,7 +72,7 @@ const FormApp = ({
           saveForm={saveForm}
           beginEditing={beginEditing}
           history={history}
-        /></div>
+        />
       </div>
     </>
   );

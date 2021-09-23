@@ -17,12 +17,12 @@ const AddASingleLine = ({
     }
 
     return (
-        <div onClick={editHere} id="field text medium"> 
+        <li onClick={editHere} id="formPreview" style={{ zIndex: 500}}> 
           <h3 className="stand">{fieldSettings.title}</h3>
           <p>{fieldSettings.instructions}</p>
           <input disabled={true} type='text'/>
           <button onClick={handleClick}>Remove me</button>
-        </div>
+        </li>
     );
 };
 

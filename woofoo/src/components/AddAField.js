@@ -11,7 +11,7 @@ const AddAField = ({
     }
 
     return (
-        <div className="button" href="#">
+        <div className="button" id="addFields" >
           <button onClick={handleClick}>{title}</button>
         </div>
     );
