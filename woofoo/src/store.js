@@ -3,6 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from "./reducers/index";
 import uniqid from 'uniqid';
 import thunk from 'redux-thunk';
+import { loadState, persistState } from './persistence/util';
 
 const defaultState = {
     formData: {
@@ -18,12 +19,19 @@ const defaultState = {
 
 const composedEnhancers = composeWithDevTools(applyMiddleware(thunk));
 
-const loadedState = null;//  loadState();
-const state = ((loadedState && loadedState.formData && loadedState.savedForms) ? loadedState : defaultState);
+// restore session form data from local storage if present
+const formData = loadState();
+let state = (formData) ? ({
+    ...defaultState,
+    formData
+}) : defaultState;
+
 const store = createStore(rootReducer, state, composedEnhancers);
 
-// store.subscribe(() => persistState(store.getState()));
+// subscribe to changes in session
+store.subscribe(() => persistState(store.getState().formData));
 if (process.env.NODE_ENV !== 'production' && module.hot) {
+    console.log("hot reloading...");
     module.hot.accept('./reducers', () => store.replaceReducer(rootReducer));
 }
 

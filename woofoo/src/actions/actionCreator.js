@@ -106,13 +106,6 @@ export function syncSavedForms(savedForms) {
     };
 }
 
-//export function loadFormAsync(formId, savedForms) {
-//    return (dispatch) => {
-//        const formRef =
-//            (getDatabase(), FORM_SAVED_STATE + `/savedForms/${formId}`);
-//        dispatch(loadForm(formId, savedForms));
-//    };
-//}
 
 export function loadForm(formId, savedForms) {
     return {
