@@ -65,22 +65,33 @@ const FormApp = ({
             {isSignedIn ? (
                 <>
                     <NavBar createForm={createForm} savedForms={savedForms} />
-                    <FieldButtons buttonList={ButtonList} addField={addField} />
-                    {editing.currentlyEditing && (
-                        <EditInputs
-                            selectedField={currentFields[editing.editIndex]}
-                            index={editing.editIndex}
-                            updateField={updateField}
-                        />
-                    )}
-                    <CurrentForm
-                        currentFields={currentFields}
-                        formId={formId}
-                        removeField={removeField}
-                        saveForm={saveForm}
-                        beginEditing={beginEditing}
-                        history={history}
-                    />
+                    <div id="stage">
+                        <div id="side">
+                            <FieldButtons
+                                buttonList={ButtonList}
+                                addField={addField}
+                            />
+                            {editing.currentlyEditing && (
+                                <EditInputs
+                                    selectedField={
+                                        currentFields[editing.editIndex]
+                                    }
+                                    index={editing.editIndex}
+                                    updateField={updateField}
+                                />
+                            )}
+                        </div>
+                        <div id="formPreview">
+                            <CurrentForm
+                                currentFields={currentFields}
+                                formId={formId}
+                                removeField={removeField}
+                                saveForm={saveForm}
+                                beginEditing={beginEditing}
+                                history={history}
+                            />
+                        </div>
+                    </div>
                 </>
             ) : (
                 <div>

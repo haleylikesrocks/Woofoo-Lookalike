@@ -17,8 +17,8 @@ const AddASingleLine = ({
     }
 
     return (
-        <div onClick={editHere}> 
-          <h3>{fieldSettings.title}</h3>
+        <div onClick={editHere} id="field text medium"> 
+          <h3 className="stand">{fieldSettings.title}</h3>
           <p>{fieldSettings.instructions}</p>
           <input disabled={true} type='text'/>
           <button onClick={handleClick}>Remove me</button>

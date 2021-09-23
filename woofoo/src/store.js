@@ -28,7 +28,10 @@ const composedEnhancers = composeWithDevTools(applyMiddleware(thunk));
 const formData = loadState();
 let state = (formData) ? ({
     ...defaultState,
-    formData
+    formData: {
+        ...defaultState.formData,
+        ...formData
+    }
 }) : defaultState;
 
 const store = createStore(rootReducer, state, composedEnhancers);

@@ -4,14 +4,19 @@ const CheckBox = ({
   removeField,
   index,
   fieldSettings,
+  beginEditing,
   }) => {
-    const handleClick = () => {
-      removeField(index);
+    const editHere = () =>{
+      beginEditing(index);
     }
 
+    const handleClick = (e) => {
+      e.stopPropagation();
+      removeField(index);
+    }
     return (
-        <div> 
-          <h3>{fieldSettings.title}</h3>
+        <div onClick={editHere}> 
+          <h3 className="stand">{fieldSettings.title}</h3>
           <p>{fieldSettings.instructions}</p>
           <input disabled={true} type='checkbox' id='choice1'/>
           <label htmlFor='choice1'> {fieldSettings.choices[0]}</label> <br/>
