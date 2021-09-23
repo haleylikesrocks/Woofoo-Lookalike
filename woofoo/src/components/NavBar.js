@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import uniqid from 'uniqid';
+import { Styles } from '../style.ts'
 
 const NavBar = ({
   createForm
@@ -11,7 +12,7 @@ const NavBar = ({
   }
 
   return (
-    <div id='nav'>
+    <div id='nav' style={Styles.navBar} >
         <h1>Woofoo Lookalike</h1>
         <Link to="/savedforms">
           <button type="button">Saved forms</button>

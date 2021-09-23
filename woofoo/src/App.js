@@ -6,6 +6,7 @@ import * as actionCreator from "./actions/actionCreator";
 import ButtonList from "./data/buttonList";
 import EditInputs from "./components/EditInputs";
 import FieldButtons from "./components/FieldButtons";
+import { Styles } from './style.ts';
 
 function mapStateToProps(state) {
 
@@ -64,7 +65,7 @@ const FormApp = ({
     return (
         <>
             {isSignedIn ? (
-                <>
+                <div id="app" style={Styles.app}>
                     <NavBar createForm={createForm} savedForms={savedForms} />
                     <div id="stage">
                         <div id="side">
@@ -91,7 +92,7 @@ const FormApp = ({
                                 history={history}
                             />
                     </div>
-                </>
+                </div>
             ) : (
                 <div>
                     <button onClick={handleSignIn}>Sign in!</button>

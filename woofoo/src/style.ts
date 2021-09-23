@@ -1,8 +1,8 @@
-export const Styles: { [key:string]: React.CSSProperties } = {
+export const Styles: { [key: string]: React.CSSProperties } = {
     first: {
-        backgroundColor: '#18587A',
-        color: '#FFFFFF',
-        position: 'fixed',
+        backgroundColor: "#18587A",
+        color: "#FFFFFF",
+        position: "fixed",
         maxHeight: 0,
         bottom: 0,
         left: 0,
@@ -11,11 +11,12 @@ export const Styles: { [key:string]: React.CSSProperties } = {
         zIndex: 9999,
     },
 
-    p: {
-
+    navBar: {
+        background: "#e66760",
+        display: "grid",
     },
-    button: {
 
+    app: {
+        display: 'grid',
     },
-    
 };
