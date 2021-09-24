@@ -1,4 +1,6 @@
+import { set } from "@firebase/database";
 import React, { useState } from "react";
+import { add_single_line_type, add_checkbox, add_dropdown, add_number, add_paragraph, add_multiple_coice } from "../actions/action-types";
 
 const EditInputs = ({ selectedField, index, updateField }) => {
   const handleClick = () => {
@@ -17,6 +19,34 @@ const EditInputs = ({ selectedField, index, updateField }) => {
     selectedField.fieldSettings.instructions
   );
   const [choices, setChoices] = useState(selectedField.fieldSettings.choices);
+  
+  const choicesForm = () =>{
+    return selectedField.fieldSettings && selectedField.fieldSettings.choices.map((choice, index) => {
+      return (
+        <div key={index}>
+          <br/>
+          <h4>{`Set option ${index + 1}`}</h4>
+          <input value={choice} type="text" onChange={(e) => updateChoice(e, index)}></input>
+          <br/>
+        </div>
+      )
+    })
+  } 
+
+  const updateChoice = (e, index) => {
+  
+    let newArr = [...choices]; // copying the old datas array
+    newArr[index] = e.target.value; // replace e.target.value with whatever you want to change it to
+  
+    setChoices(newArr); // ??
+  }
+
+  const showChoices = () => {
+    if(selectedField.type === add_checkbox || selectedField.type === add_multiple_coice || selectedField.type === add_dropdown){
+      return true;
+    }
+    return false;
+  }
 
   return (
     <div>
@@ -39,13 +69,10 @@ const EditInputs = ({ selectedField, index, updateField }) => {
           type="text"
           onChange={(e) => setInstruction(e.target.value)}
         ></input>
-        <h3>Choices</h3>
-        <input
-          className="choices"
-          value={choices}
-          type="text"
-          onChange={(e) => setChoices(e.target.value)}
-        ></input></ul>
+          
+        {showChoices() && <h3>Choices</h3> && choicesForm()}
+
+        </ul>
       </form>
       <button onClick={handleClick}>Save Edits</button>
     </div>
