@@ -21,24 +21,27 @@ const EditInputs = ({ selectedField, index, updateField }) => {
   const [choices, setChoices] = useState(selectedField.fieldSettings.choices);
   
   const choicesForm = () =>{
-    return selectedField.fieldSettings && selectedField.fieldSettings.choices.map((choice, index) => {
+    return selectedField.fieldSettings && choices.map((choice, index) => {
       return (
-        <div key={index}>
+        <form key={index}>
           <br/>
           <h4>{`Set option ${index + 1}`}</h4>
           <input value={choice} type="text" onChange={(e) => updateChoice(e, index)}></input>
           <br/>
-        </div>
+        </form>
       )
     })
   } 
 
   const updateChoice = (e, index) => {
-  
+    // console.log(e.target.value, index);
+    e.preventDefault();
     let newArr = [...choices]; // copying the old datas array
     newArr[index] = e.target.value; // replace e.target.value with whatever you want to change it to
   
-    setChoices(newArr); // ??
+    setChoices(newArr); 
+
+    console.log(choices);
   }
 
   const showChoices = () => {
